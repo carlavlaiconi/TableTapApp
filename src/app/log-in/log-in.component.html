@@ -1,0 +1,11 @@
+<div class="Page">
+  <img src="../../assets/tabletap-high-resolution-color-logo.png" style="margin-top: 9em">
+  <div >
+    <ion-input class="custom-input"  label="Username" [(ngModel)]="logInUser.Username" label-placement="start" fill="outline"  ></ion-input>
+ 
+    <ion-input class="custom-input" type="password" label="Password" [(ngModel)]="logInUser.Password" label-placement="start" fill="outline" padding-bottom="1em"></ion-input>
+    
+    <ion-button class="custom-input-button" type="submit"  fill="outline" (click)="login()">Login</ion-button>
+ 
+  </div>
+</div>

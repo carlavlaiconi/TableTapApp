@@ -1,0 +1,19 @@
+<div>
+  <h1 class="title">Edit Orders</h1>
+</div>
+
+<ion-card *ngFor="let order of orders" >
+  <ion-card-header class="card-header" >
+    <ion-card-title class="title-left">Order {{order.id}}&nbsp;</ion-card-title>   
+  </ion-card-header>
+  <ion-card-content>
+    <div >
+      <strong >Waiter assigned: <span class="textbox">{{getEmpName(order.waiterId!)}}</span></strong><br>
+      <strong >Table number: <span class="textbox">{{order.tableId}}</span></strong><br>
+      <strong >Status: <span class="textbox">{{order.status}}</span></strong><br>
+      <strong >Items ordered: <span class="textbox">{{order.items}}</span></strong><br>
+    </div>
+  </ion-card-content>
+  </ion-card>
+  
+

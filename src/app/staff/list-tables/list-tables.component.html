@@ -1,0 +1,13 @@
+<div class="title">
+  <h1>Assigned Tables</h1>
+</div>
+
+<div class="displayTables">
+  <div class="tableAvatar" *ngFor="let table of tables" (click)="openModal(table)">
+    <ion-icon *ngIf="getStatusName(table.status!)==='available'" style="color: green" name="ellipse-outline" ></ion-icon>
+    <ion-icon *ngIf="getStatusName(table.status!)==='open'" style="color: rgb(234, 180, 16)" name="people-outline"></ion-icon>
+    <ion-icon *ngIf="getStatusName(table.status!)==='checkRequested'" style="color: red" name="receipt-outline"></ion-icon>
+    <strong style="font-size: 1em;">Table {{table.id}}</strong>
+  </div>
+
+</div>

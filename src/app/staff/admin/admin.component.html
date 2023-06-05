@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <div class="logo-container">
+      <img src="../../assets/tabletap-high-resolution-logo-white-on-transparent-background.png" alt="Logo">
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <router-outlet></router-outlet>
+
+</ion-content>
+
+<ion-toolbar color="primary" class="footerToolbar">
+    <ion-icon (click)="toFood()" name="restaurant-outline"></ion-icon>
+    <ion-icon (click)="toDrinks()" name="wine-outline"></ion-icon>
+    <ion-icon (click)="toStaff()" name="people-circle-outline"></ion-icon>
+  </ion-toolbar>
+  
+
+

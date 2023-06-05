@@ -1,0 +1,88 @@
+.delete-button {
+    border-radius: 8px;
+    align-items: right !important;
+    width: 3.5em;
+    height: 3.5em;
+    background-color: primary;
+    flex-shrink: 0; /* Prevent button from shrinking */
+  }
+
+  .delete-button ion-icon {
+    align-items: right;
+    color: #fff;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .title-left {
+    text-align: left;
+    
+  }
+  
+  .button-right {
+    padding-left: 18em;
+  }
+
+  .cart-button {
+    border-radius: 8px;
+    width: 3.5em;
+    height: 3.5em;
+    background-color: primary;
+    flex-shrink: 0; /* Prevent button from shrinking */
+  }
+  
+
+  .cart-button ion-icon {
+    color: #fff;
+   // font-size: 30px!important ;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .allergens-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow wrapping to new line */
+  }
+  
+
+  .textbox{
+    max-width: 1em;
+  }
+
+  .icon {
+    align-self: center;
+    font-size: 5em;
+    
+  }
+
+  .add-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+
+  }
+
+
+
+
+  
+
+  
+
+
+

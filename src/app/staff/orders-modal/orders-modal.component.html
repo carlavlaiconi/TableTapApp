@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="cancel()">Close</ion-button>
+    </ion-buttons>
+    <ion-title>Table {{table.id}} </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="title menu" *ngIf="table.status==1">
+  <h1>Table is open. Waiting for customers.</h1>
+  </div>
+
+  <div class="title menu" *ngIf="table.status==2 && tableOrders.length==0">
+    <h1>Table is occupied. Orders open.</h1>
+    </div>
+
+
+<ion-card *ngFor="let order of tableOrders">
+<ion-card-header>
+  <h1>Order {{order.id}}</h1>
+</ion-card-header>
+<ion-card-content>
+  <div class="title menu">
+    <ion-card class="orderCard">
+      <ion-card-content class="order">
+        <ion-list lines="full">
+          <ion-item *ngFor="let item of order.foods">
+            <ion-label>
+              <div class="item-wrapper">
+                <span class="item-name">{{ item.name }} - {{item.price}} lei</span>
+              </div>
+            </ion-label>
+          </ion-item>
+        
+        </ion-list>
+        <strong>Order total: {{order.total}} lei</strong><br>
+        <ion-button (click)="markDelivered(order)" *ngIf="order.status=='sent'">Order Delivered</ion-button>
+        <strong *ngIf="order.status!='sent' " style="color: primary !important">Order is delivered!</strong>
+      </ion-card-content>
+    </ion-card>
+    </div>
+
+
+</ion-card-content>
+</ion-card>
+  
+<div style="display: flex; justify-content: center;">
+<ion-button (click)="closeTable()" *ngIf="table.status==3">Close Table</ion-button>
+</div> 
+
+</ion-content>

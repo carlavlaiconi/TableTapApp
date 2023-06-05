@@ -1,0 +1,23 @@
+<body class = "body">
+  <div class="page">
+    <ion-header class="header">
+      <ion-toolbar color="primary">
+        <div class="logo-container">
+          <img src="../../assets/tabletap-high-resolution-logo-white-on-transparent-background.png" alt="Logo">
+        </div>
+      </ion-toolbar>
+    </ion-header>
+
+    <div >
+    <ion-card style="  margin-top: 5em;  background-color: #f19941;  color: white;  display: flex; flex-direction: column; justify-content: center;">
+    <ion-card-title style="color: white; padding-left: 1em; padding-top: 1em;">QR Code<br><strong ></strong></ion-card-title>
+            <div style=" font-size: 1.5em; font-weight: 500; padding-left: .7em;"> In order to access the menu, please scan the QR code on the table</div>
+    
+        <ion-card-content>
+            <ngx-scanner-qrcode class="ngx-scanner-qrcode" #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+        </ion-card-content>
+    </ion-card>
+</div>
+  </div>
+</body>
+

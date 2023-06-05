@@ -1,0 +1,57 @@
+<div class="buttons">
+  <ion-button color="primary" (click)="triggerActionSheet()">Add</ion-button>
+  <ion-searchbar show-clear-button="focus"  (ionInput)="searchFood($event)" (ionClear)="clearSearch()"></ion-searchbar>
+</div>
+<div class="title">
+  <h1>Food Menu</h1>
+</div>
+
+<div *ngIf="foodItems.length && search">
+  <ion-card *ngFor="let item of filteredFoodItems">
+    <img *ngIf="item.photoPath" alt="{{item.name}}" src="{{item.photoPath}}" />
+  <ion-card-header>
+    <ion-card-title>{{item.name}}<br><strong style="color: green; font-size: 1rem">{{item.price}} lei</strong></ion-card-title>
+    <ion-card-subtitle>KCal: {{item.kcal}}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{item.ingredients}}<br><br>
+    <strong>Allergens: {{item.allergens}}</strong>
+  </ion-card-content>
+</ion-card>
+</div>
+
+<div *ngIf="foodItems.length && !search">
+  <div class="title menu" *ngFor="let category of categories">
+    <h1>{{category.name}}</h1>
+  <ion-card *ngFor="let item of filterByCategory(category.id!)" (click)="openModal('edit', item.id, 'food')">
+      <img *ngIf="item.photoPath" alt="{{item.name}}" src="{{item.photoPath}}" />
+    <ion-card-header>
+      <ion-card-title>{{item.name}}<br><strong style="color: green; font-size: 1rem">{{item.price}} lei</strong></ion-card-title>
+      <ion-card-subtitle>KCal: {{item.kcal}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{item.ingredients}}<br><br>
+      <strong>Allergens: {{item.allergens}}</strong>
+    </ion-card-content>
+  </ion-card>
+
+</div>
+</div>
+<!-- 
+<ion-item *ngIf="editCategory==true">
+  <ion-select labelPlacement="stacked" label="Categorys" placeholder="Select Item Category" [(ngModel)]="food.category">
+    <ion-select-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</ion-select-option>
+  </ion-select>
+</ion-item> -->
+
+
+<ion-action-sheet
+    [isOpen]="showActionSheet"
+    header="What do you want to add?"
+    [buttons]="actionSheetButtons"
+    (didDismiss)="showActionSheet=false"
+  ></ion-action-sheet>
+
+  

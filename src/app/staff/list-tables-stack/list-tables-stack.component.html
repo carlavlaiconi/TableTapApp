@@ -1,0 +1,22 @@
+
+<div class="title">
+  <h1>Assigned Tables</h1>
+</div>
+  <ion-card *ngFor="let table of tables" (click)="openModal(table)">
+    <ion-card-header>
+      <ion-card-title *ngIf="getStatusName(table.status!)==='available'">Table {{table.id}}&nbsp;<ion-icon style="color: green;" name="ellipse-outline"></ion-icon></ion-card-title>
+      <ion-card-title *ngIf="getStatusName(table.status!)==='open'">Table {{table.id}}&nbsp;<ion-icon style="color: rgb(234, 180, 16);" name="people-outline"></ion-icon></ion-card-title>
+      <ion-card-title *ngIf="getStatusName(table.status!)==='checkRequested'">Table {{table.id}}&nbsp;<ion-icon style="color: red; " name="receipt-outline"></ion-icon></ion-card-title>
+
+    </ion-card-header>
+  
+    <ion-card-content *ngIf="getStatusName(table.status!)==='available'">
+      <strong>Table is available</strong>
+    </ion-card-content>
+    <ion-card-content *ngIf="getStatusName(table.status!)==='open'">
+      <strong>Table occupied. Order is open.</strong>
+    </ion-card-content>
+    <ion-card-content *ngIf="getStatusName(table.status!)==='checkRequested'">
+      <strong>Table requested the check</strong>
+    </ion-card-content>
+  </ion-card>

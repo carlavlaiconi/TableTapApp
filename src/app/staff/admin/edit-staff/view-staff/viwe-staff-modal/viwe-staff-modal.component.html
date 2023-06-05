@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="mode=='edit'">Editing</ion-title>
+    <ion-title *ngIf="mode=='add'">Adding new employee</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Enter first name" [(ngModel)]="employee.fName" placeholder="First Name"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-textarea labelPlacement="stacked" label="Enter last name" [(ngModel)]="employee.lName" placeholder="Last Name"></ion-textarea>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-select aria-label="Role" interface="popover" [(ngModel)]="employee.role" [placeholder]="getRoleName(employee.role!)">
+          <ion-select-option *ngFor="let role of roles" value="{{role.id}}">{{role.role}} </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item *ngIf="mode=='edit'">
+    <ion-textarea labelPlacement="stacked" label="Enter creation date" [(ngModel)]="employee.created" placeholder="Creation Date"></ion-textarea>
+    </ion-item>
+  <ion-item *ngIf="mode=='add'">
+   <ion-input labelPlacement="stacked" label="Enter username" [(ngModel)]="user.Username" placeholder="Employee Username"></ion-input>
+   </ion-item>
+   <ion-item *ngIf="mode=='add'">
+    <ion-input labelPlacement="stacked" label="Enter password" [(ngModel)]="user.Password" placeholder="Employee Password"></ion-input>
+    </ion-item>
+    
+  
+
+  <ion-item style="margin-top: 4em" *ngIf="mode=='edit'">
+    <ion-button color="danger" (click)="triggerActionSheet(employee.userId!)">Delete {{employee.fName}}</ion-button>
+    <ion-action-sheet
+    [isOpen]="showActionSheet"
+    header="Do you want to delete this employee?"
+    [buttons]="actionSheetButtons"
+    (didDismiss)="showActionSheet=false"
+  ></ion-action-sheet>
+  </ion-item>
+ 
+ 
+</ion-content>

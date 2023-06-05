@@ -1,0 +1,66 @@
+
+<div class="title menu" *ngIf="!pendingOrder.foods && orders.length==0">
+  <h1>Awaiting New Order...</h1>
+  </div>
+
+
+
+<div class="title menu" *ngIf="pendingOrder && pendingOrder.foods && pendingOrder.foods.length>0 && !checkRequested">
+  <h1>Pending Order</h1>
+<ion-card class="orderCard">
+  <ion-card-content class="order">
+    <ion-list lines="full">
+      <ion-item *ngFor="let item of pendingOrder.foods">
+        <ion-label>
+          <div class="item-wrapper">
+            <span class="item-name">{{ item.name }} - {{item.price}} lei</span>
+            <ion-icon (click)="removeFromList(item)" name="close-outline" class="close-icon"></ion-icon>
+          </div>
+        </ion-label>
+      </ion-item>
+    
+    </ion-list>
+    <strong>Order total: {{calculateTotal(pendingOrder)}} lei</strong><br>
+    <ion-button *ngIf="pendingOrder.status!='closed'" (click)="sendOrder()">
+      Send Order
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+</div>
+
+
+<div class="title menu" *ngIf="orders && orders.length>0 && !checkRequested">
+  <h1>Accepted Orders</h1>
+</div>
+
+<div class="title menu" *ngIf="checkRequested" style="margin-left:2.5em !important">
+  <h1>Check requested, please wait...</h1>
+</div>
+
+<div  *ngIf="orders && orders.length>0">
+  <ion-button  class="title menu" (click)="requestCheck()" *ngIf="!checkRequested"> 
+    Request Check
+  </ion-button>
+
+  
+<div class="title menu" *ngFor="let order of orders">
+<ion-card class="orderCard">
+  <ion-card-content class="order">
+    <ion-list lines="full">
+      <ion-item *ngFor="let item of order.foods">
+        <ion-label>
+          <div class="item-wrapper">
+            <span class="item-name">{{ item.name }} - {{item.price}} lei</span>
+          </div>
+        </ion-label>
+      </ion-item>
+    
+    </ion-list>
+    <strong>Order total: {{order.total}} lei</strong><br>
+  </ion-card-content>
+</ion-card>
+</div>
+</div>
+
+
+

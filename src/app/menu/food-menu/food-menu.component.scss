@@ -1,0 +1,55 @@
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+
+    h1{
+    font-weight: 600 !important;
+    }
+}
+
+.menu {
+    display: flex;
+    flex-direction: column; /* align items vertically */
+    align-items: center; /* center items horizontally */
+    margin: 1em;
+    overflow-y: scroll !important;
+  //  height: 800px;
+  }
+  
+  .menu ion-card {
+    width: 22em;
+  }
+
+  .cart-button {
+    border-radius: 8px;
+    width: 3.5em;
+    height: 3.5em;
+    background-color: primary;
+    flex-shrink: 0; /* Prevent button from shrinking */
+  }
+  
+
+  .cart-button ion-icon {
+    color: #fff;
+   // font-size: 30px!important ;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .allergens-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow wrapping to new line */
+  }
+  
+
+  .textbox{
+    max-width: 1em;
+  }
+  

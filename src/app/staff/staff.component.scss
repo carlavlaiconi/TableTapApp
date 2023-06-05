@@ -1,0 +1,15 @@
+ion-toolbar{
+    height: 5em;
+    color: #FFF !important;
+}
+
+.footerToolbar{
+    display: flex;
+    justify-content: center;
+
+    ion-icon {
+        height: 3em;
+        width: 3em;
+        margin-left: 3.9em;
+    }
+}

@@ -1,0 +1,8 @@
+<zxing-scanner
+  [(device)]="selectedDevice"
+  [formats]="['QR_CODE']"
+  (scanSuccess)="onScanSuccess($event)"
+  (camerasFound)="onCamerasFound($event)"
+></zxing-scanner>
+
+<ion-button expand="block" (click)="startScanning()">Start Scanning</ion-button>

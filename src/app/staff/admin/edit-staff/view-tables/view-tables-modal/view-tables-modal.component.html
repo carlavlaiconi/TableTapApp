@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="mode=='edit'">Editing</ion-title>
+    <ion-title *ngIf="mode=='add'">Adding new table</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding"> 
+  <ion-list>
+    <ion-item *ngIf="mode=='edit'">
+      <ion-select aria-label="Fruit" interface="popover" placeholder={{getEmpName(table.empId!)}}>
+        <ion-select-option *ngFor="let emp of employees" value="{{emp}}">{{emp.fName+ " "+emp.lName }} </ion-select-option>
+      </ion-select>
+    </ion-item>
+   <ion-item *ngIf="mode=='edit'">
+    <ion-input labelPlacement="stacked" label="Enter order ID" [(ngModel)]="table.orderId" placeholder="Table order ID"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item *ngIf="mode=='edit'">
+    <ion-select aria-label="Fruit" interface="popover" placeholder={{getStatusName(table.status!)}}>
+      <ion-select-option *ngFor="let stat of statuses" value="{{stat}}">{{stat.name}} </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="mode=='add'">
+    <ion-select aria-label="Fruit" interface="popover" placeholder="Select the employee for this table">
+      <ion-select-option *ngFor="let emp of employees" value="{{emp}}">{{emp.fName+ " "+emp.lName }} </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  </ion-list>
+    
+  
+
+  <ion-item style="margin-top: 4em" *ngIf="mode=='edit'">
+    <ion-button color="danger" (click)="triggerActionSheet(table.id!)">Delete Table {{table.id}}</ion-button>
+    <ion-action-sheet
+    [isOpen]="showActionSheet"
+    header="Are you suer you want to delete this table?"
+    [buttons]="actionSheetButtons"
+    (didDismiss)="showActionSheet=false"
+  ></ion-action-sheet>
+  </ion-item>
+ 
+ 
+</ion-content>

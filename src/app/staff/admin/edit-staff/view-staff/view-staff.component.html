@@ -1,0 +1,49 @@
+<div class="buttons">
+  <ion-button *ngIf="sort=='asc'" color="primary" (click)="setSort()"><ion-icon name="arrow-down-outline"></ion-icon></ion-button>
+  <ion-button *ngIf="sort=='desc'" color="primary" (click)="setSort()"><ion-icon name="arrow-up-outline"></ion-icon></ion-button>
+  <ion-button style="min-width: 4em" *ngIf="mode=='name'" color="primary" (click)="setMode()">Name</ion-button>
+  <ion-button style="min-width: 4em" *ngIf="mode=='role'" color="primary" (click)="setMode()">Job</ion-button>
+  <ion-searchbar show-clear-button="focus"  (ionInput)="searchEmp($event)" (ionClear)="clearSearch()"></ion-searchbar>
+</div>
+
+<div class="title">
+  <h1>Employees List</h1>
+</div>
+
+<div *ngIf="employees.length && search">
+  <ion-card *ngFor="let item of filteredEmployees">
+  <ion-card-header>
+    <ion-card-title>{{item.fName}}&nbsp;{{item.lName}}</ion-card-title>
+    <ion-card-subtitle>Job: </ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <!-- Created at: {{item.created!.getDay+'.'+item.created!.getMonth+'.'+item.created!.getFullYear}} -->
+  </ion-card-content>
+</ion-card>
+</div>
+
+<div *ngIf="employees.length && !search">
+  <div class="title menu" *ngFor="let role of empRoles">
+    <h1>{{role.role}}</h1>
+   <ion-card *ngFor="let item of filterByRole(role.id!)" (click)="openModal('edit', item.id, 'employee')">
+    <ion-card-header class="card-header" >
+      <ion-card-title class="title-left">{{item.fName}}&nbsp;{{item.lName}}</ion-card-title>   
+    </ion-card-header>
+    <ion-card-content>
+      <div class="allergens-cart" >
+        <strong >Username<br> <span class="textbox">{{getEmpUsername(item.id!)}}</span></strong><br>
+        <strong >Password<br> <span class="textbox">{{getEmpPassword(item.id!)}}</span></strong>
+      </div>
+    </ion-card-content>
+    </ion-card>
+ 
+
+</div>
+</div>
+
+
+<ion-card class="add-card" (click)="openModal('add', 0, 'employee')">
+  <ion-icon name="add-circle-outline" class="icon"></ion-icon>
+</ion-card> 
+

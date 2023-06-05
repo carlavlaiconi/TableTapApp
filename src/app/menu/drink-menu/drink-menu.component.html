@@ -1,0 +1,55 @@
+<div class="buttons">
+  <ion-searchbar show-clear-button="focus"  (ionInput)="searchDrink($event)" (ionClear)="clearSearch()"></ion-searchbar>
+</div>
+<div class="title">
+  <h1>Drinks Menu</h1>
+</div>
+
+
+<div *ngIf="drinkItems.length && search">
+  <ion-card *ngFor="let item of filteredDrinkItems">
+    <img *ngIf="item.photoPath" alt="{{item.name}}" src="{{item.photoPath}}" />
+  <ion-card-header>
+    <ion-card-title>{{item.name}}<br><strong style="color: green; font-size: 1rem">{{item.price}} lei</strong></ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{item.ingredients}}<br><br>
+    <div class="allergens-cart" >
+      <strong >Allergens: <br> <span class="textbox">{{item.allergens}}</span></strong>
+      <ion-button class="cart-button" (click)="addToCart(item)" >
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </div>
+   
+    <br>
+   
+  </ion-card-content>
+</ion-card>
+</div>
+
+<div *ngIf="drinkItems.length && !search">
+  <div class="title menu" *ngFor="let category of categories">
+    <h1>{{category.name}}</h1>
+  <ion-card *ngFor="let item of filterByCategory(category.id!)" >
+      <img *ngIf="item.photoPath" alt="{{item.name}}" src="{{item.photoPath}}" />
+    <ion-card-header>
+      <ion-card-title>{{item.name}}<br><strong style="color: green; font-size: 1rem">{{item.price}} lei</strong></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{item.ingredients}}<br><br>
+      <div class="allergens-cart">
+        <strong>Allergens: {{item.allergens}}</strong>
+        <ion-button (click)="addToCart(item)" class="cart-button">
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-button>
+      </div>
+     
+      <br>
+     
+    </ion-card-content>
+  </ion-card>
+</div>
+</div>
+

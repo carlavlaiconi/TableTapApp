@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="mode=='edit'">Editing</ion-title>
+    <ion-title *ngIf="mode=='add'">Adding new entry</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div *ngIf="(whatToEdit=='drink') || ( whatToEdit=='category' && mode=='add')">
+  <ion-item *ngIf="whatToEdit=='category'">
+    <ion-input labelPlacement="stacked" label="Enter item name" [(ngModel)]="category.name" placeholder="Item name"></ion-input>
+    </ion-item>
+  <ion-item *ngIf="whatToEdit=='drink'">
+    <ion-input labelPlacement="stacked" label="Enter item name" [(ngModel)]="drink.name" placeholder="Item name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="whatToEdit=='drink'">
+    <ion-textarea labelPlacement="stacked" label="Enter item ingredients" [(ngModel)]="drink.ingredients" placeholder="Item Ingredients"></ion-textarea>
+    </ion-item>
+   <ion-item *ngIf="mode=='edit' && whatToEdit=='drink'">
+    <ion-input labelPlacement="stacked" label="Enter item photo path" [(ngModel)]="drink.photoPath" placeholder="Item PhotoPath"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="whatToEdit=='drink'">
+    <ion-textarea labelPlacement="stacked" label="Enter item allergen list" [(ngModel)]="drink.allergens" placeholder="Item Allergens"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="whatToEdit=='drink'">
+    <ion-input labelPlacement="stacked" label="Enter item price" [(ngModel)]="drink.price" placeholder="Item Price"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="whatToEdit=='drink'">
+    <ion-select labelPlacement="stacked" label="Category" placeholder="Select Item Category" [(ngModel)]="drink.category">
+      <ion-select-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item style="margin-top: 4em" *ngIf="mode=='edit'">
+    <ion-button color="danger" (click)="triggerActionSheet(drink.id!)">Delete {{drink.name}}</ion-button>
+    <ion-action-sheet
+    [isOpen]="showActionSheet"
+    header="Actions"
+    [buttons]="actionSheetButtons"
+    (didDismiss)="showActionSheet=false"
+  ></ion-action-sheet>
+  </ion-item>
+</div>
+
+
+<div *ngIf="whatToEdit=='category' && mode =='edit'">
+
+  <ion-item>
+    <ion-select labelPlacement="stacked" label="Category" placeholder="Select Item Category" [(ngModel)]="categoryId" (ionChange)="onCategoryChange()">
+      <ion-select-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}} </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="whatToEdit=='category' && categoryChoosen">
+    <ion-input labelPlacement="stacked" label="Enter category name" [(ngModel)]="category.name" placeholder="Category name"></ion-input>
+    </ion-item>
+
+  <ion-item style="margin-top: 4em" *ngIf=" categoryChoosen">
+    <ion-button color="danger" (click)="triggerActionSheetCategory(category.id!)">Delete {{category.name}}</ion-button>
+    <ion-action-sheet
+    [isOpen]="showActionSheetCategory"
+    header="Are you sure you want to delete this?"
+    [buttons]="categoryActionSheetButtons"
+    (didDismiss)="showActionSheetCategory=false"
+  ></ion-action-sheet>
+  </ion-item>
+  
+</div>
+ 
+</ion-content>

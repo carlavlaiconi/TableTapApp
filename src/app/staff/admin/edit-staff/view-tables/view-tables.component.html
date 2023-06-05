@@ -1,0 +1,24 @@
+<div>
+  <h1 class="title">Edit Tables</h1>
+</div>
+
+<ion-card *ngFor="let table of tables" (click)="openModal('edit', table.id, 'table')">
+  <ion-card-header class="card-header" >
+    <ion-card-title class="title-left">Table {{table.id}}&nbsp;</ion-card-title>   
+  </ion-card-header>
+  <ion-card-content>
+    <div >
+      <strong >Waiter assigned: <span class="textbox">{{getEmpName(table.empId!)}}</span></strong><br>
+      <strong >Order number: <span class="textbox">{{table.orderId}}</span></strong>
+    </div>
+  </ion-card-content>
+  </ion-card>
+  
+  
+
+
+<ion-card class="add-card" (click)="openModal('add', 0, 'table')">
+  <ion-icon name="add-circle-outline" class="icon"></ion-icon>
+</ion-card> 
+
+
